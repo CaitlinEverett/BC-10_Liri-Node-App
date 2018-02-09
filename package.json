@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^5.0.0",
+    "moment": "^2.20.1",
     "node-spotify-api": "^1.0.7",
+    "node-timeout": "0.0.4",
     "request": "^2.83.0",
+    "timers": "^0.1.1",
     "twitter": "^1.7.1"
   },
   "devDependencies": {},
