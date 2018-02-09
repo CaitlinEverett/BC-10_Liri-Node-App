@@ -23,8 +23,8 @@ Used to load environment variables from .env file.
 --
 Extra Modules:
 
-5. Moment - used to timestamp output
-* [Moment](https://www.npmjs.com/package/moment)
+5. * [Moment](https://www.npmjs.com/package/moment) - used to timestamp output
 
-6. FS - used to read/write to and from files
+
+6. FS (part of node core) - used to read/write to and from files
 
