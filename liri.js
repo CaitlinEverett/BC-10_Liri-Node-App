@@ -1,15 +1,24 @@
+//////////////////////////////
+// Liri App for NWBC Homework
+// Caitlin Everett
+// Feb 2018
+/////////////////////////////
+
+
+//variables, etc....
 const keys = require('./keys');
 const Twitter = require("twitter");
 const Spotify = require('node-spotify-api');
 const fs = require('fs');
 const request = require('request');
+var arg2 = process.argv[2];
+var arg3 = process.argv[3];
 
-const arg2 = process.argv[2];
-const arg3 = process.argv[3];
-// depending on user command run a function
 
+////////////////////////////////////////////////
+//uses Twitter module to grab tweets
 function grabTweets(user) {
-    let name = (user == undefined) ? "@taylorswift13" : user;
+    let name = (user == undefined) ? "@taylorswift13" : user; //tutor taught me this-- still absorbing
     const params = {
         screen_name: name
     };
@@ -41,6 +50,8 @@ Text: ${val.text}
 
 }
 
+////////////////////////////////////////////////
+//uses spotify NPM module to get song info from Spotify API
 function spotifyThis(song) {
     var spotify = new Spotify(keys.spotify);
     
@@ -73,6 +84,8 @@ Preview URL: ${firstTrack.preview_url}
 });
 }
 
+////////////////////////////////////////////////
+//uses Request module to query OMDB API and return movie info
 function movieThis(movie){
     request(`http://www.omdbapi.com/?i=tt3896198&apikey=92231f0e&t=${movie}`, { json: true }, (err, res, body) => {
 
@@ -97,19 +110,48 @@ Cast: ${body.Actors}
       });
 }
 
+////////////////////////////////////////////////
+//uses fs to read from a text file
+function doThis(){
+    fs.readFile('random.txt', 'utf8', function(err, contents) {
+        var contentArray = contents.toString().split(/[\n,]+/); 
 
-switch (arg2) {
-    case "my-tweets":
-        grabTweets(arg3);
-        break;
-    case "spotify-this":
-        spotifyThis(arg3);
-        break;
-    case "movie-this":
-        movieThis(arg3);
-        break;
-    default:
-        console.log("error: incorrect command line argument");
+        for (var i = 0; i <= contentArray.length - 2; i += 2){
+            arg2 = contentArray[i].trim();
+            console.log(arg2);
+            arg3 = contentArray[i+1].trim();
+            console.log(arg3);
+            userInputSwitch();
+        };        
 
+        //console.log(contentArray.length);
+        //console.log(contentArray);
+        //console.log(contents.toString().split(/[\n,]+/));
 
+    });
 }
+
+////////////////////////////////////////////////
+//switch statement handles user input and routes to correct function
+function userInputSwitch(){
+    switch (arg2) {
+        case "my-tweets":
+            grabTweets(arg3);
+            break;
+        case "spotify-this":
+            spotifyThis(arg3);
+            break;
+        case "movie-this":
+            movieThis(arg3);
+            break;
+        case "do-what-it-says":
+            //i notice that these print in an unexpected order
+            //is this all asynchronous?
+            doThis(arg3);
+            break;
+        default:
+            console.log("error: incorrect command line argument");
+    }
+}
+
+userInputSwitch();
