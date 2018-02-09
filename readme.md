@@ -10,17 +10,15 @@ I have run into some issues with asynchronous behavior in the bonus round - and 
 
 ### Node Modules
 
-1. Twitter
-* [Twitter](https://www.npmjs.com/package/twitter)
+1. * [Twitter](https://www.npmjs.com/package/twitter)
 
-2. Spotify
-* [Spotify](https://www.npmjs.com/package/node-spotify-api)
+2. * [Spotify](https://www.npmjs.com/package/node-spotify-api)
 
-3. OMDB 
-* [Request](https://www.npmjs.com/package/request)
+3. * [Request](https://www.npmjs.com/package/request)
+Request - used to grab data from the [OMDB API](http://www.omdbapi.com).  
 
-4. Request - used to grab data from the [OMDB API](http://www.omdbapi.com).  
-* [DotEnv](https://www.npmjs.com/package/dotenv)
+4. * [DotEnv](https://www.npmjs.com/package/dotenv)
+Used to load environment variables from .env file.
 
 --
 Extra Modules:
